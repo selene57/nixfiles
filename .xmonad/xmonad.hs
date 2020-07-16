@@ -42,7 +42,6 @@ main = do
 
     xmonad
 
-        $ ewmh
         $ addDescrKeys (myCheatsheetKey, showKeybindings) myKeys
         $ docks
         $ pagerHints
@@ -55,9 +54,9 @@ myConfig = def
     --, normalBorderColor = myNormalBorderColor
     , focusedBorderColor = myFocusedBorderColor
     , manageHook = myManageHook
-    --, handleEventHook = myHandleEventHook
+    , handleEventHook = myHandleEventHook
     , layoutHook = myLayoutHook
-    --, logHook = myLogHook
+    , logHook = myLogHook
     , modMask = myModMask
     --, mouseBindings = myMouseBindings
     , startupHook = myStartupHook
@@ -75,16 +74,13 @@ myTerminal = "alacritty"
 -- HandleEventHook
 ---------------------------------------------------------------------------
 
-myHandleEventHook = fullscreenEventHook <+> ewmhDesktopsEventHook
+myHandleEventHook = fullscreenEventHook <+> ewmhDesktopsEventHookCustom namedScratchpadFilterOutWorkspace
 
 ---------------------------------------------------------------------------
 -- LogHook
 ---------------------------------------------------------------------------
 
-myLogHook = ewmhDesktopsLogHook <+> do
-    winset <- gets windowset
-    let layoutString = description . W.layout . W.workspace . W.current $ winset
-    io $ appendFile "/tmp/.xmonad-layout-log" (layoutString ++ "\n")
+myLogHook = ewmhDesktopsLogHookCustom namedScratchpadFilterOutWorkspace 
 
 ---------------------------------------------------------------------------
 -- ManageHook
@@ -119,9 +115,26 @@ myNamedScratchpadManageHook = namedScratchpadManageHook myScratchpads
 -- Startup
 ---------------------------------------------------------------------------
 
-myStartupHook = do
+myStartupHook = ewmhDesktopsStartup <+> do
     spawn    "bash ~/.xmonad/startup.sh"
     spawn    "polybar xmonad"
+
+---------------------------------------------------------------------------
+-- Theme
+---------------------------------------------------------------------------
+
+-- color definitions
+myFocusedBorderColor = "#BB00FF"
+
+-- sizing
+gap = 10
+topBar = 10
+myBorderWidth = 5
+prompt = 20
+status = 20
+
+-- gaps
+mySpacing = spacingRaw True (Border 0 10 10 10) True (Border 5 5 5 5) True
 
 ---------------------------------------------------------------------------
 -- Workspaces
@@ -144,29 +157,25 @@ myWorkspaces = [workspaceHome, workspaceWeb, workspaceWork, workspaceTerm
                 , workspaceMusic, workspaceMedia]
 
 ---------------------------------------------------------------------------
--- Theme
----------------------------------------------------------------------------
-
--- color definitions
-myFocusedBorderColor = "#BB00FF"
-
--- sizing
-gap = 10
-topBar = 10
-myBorderWidth = 5
-prompt = 20
-status = 20
-
--- gaps
-mySpacing = spacingRaw True (Border 0 10 10 10) True (Border 5 5 5 5) True
-
----------------------------------------------------------------------------
 -- Layout Hook
 ---------------------------------------------------------------------------
 myLayoutHook = myUniversalLayoutMod $ myLayouts
 
 myUniversalLayoutMod = avoidStruts . mySpacing
-myLayouts = myFull ||| myBSP ||| myTall
+
+myLayouts = fullFirstMod
+            $ bspFirstMod
+            $ tallFirstMod
+            $ myDefaultLayoutOrder
+
+myDefaultLayoutOrder = myFull ||| myBSP ||| myTall
+fullFirstMod = onWorkspaces fullDefaultWorkspaces (myFull ||| myBSP ||| myTall)
+bspFirstMod = onWorkspaces bspDefaultWorkspaces (myBSP ||| myTall ||| myFull)
+tallFirstMod = onWorkspaces tallDefaultWorkspaces (myTall ||| myFull ||| myBSP)
+
+fullDefaultWorkspaces = ["1-Home", "7-Write", "8-Music", "9-Media"]
+bspDefaultWorkspaces = ["4-Term", "5-Code"]
+tallDefaultWorkspaces = ["2-Web", "3-Work"]
 
 -- layouts
 myFull = noBorders $ Full
