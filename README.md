@@ -22,20 +22,20 @@ Here are some of the highlights of my configuration:
 
  - [Installation](#installation)
     - [NixOs Based Installation](#nixos-based-installation)
- - [Changelogs](#changelogs)
+ - [Change logs](#change-logs)
  - [Known Issues](#known-issues)
- - [Acknowledgements](#acknowledgements)
+ - [Acknowledgments](#acknowledgments)
  - [License](#license)
 
 ## Installation
 
-This installation guide hopes to be informative and clear about how to set up my personal configuration, as well as, any constituient parts, where possible.
+This installation guide hopes to be informative and clear about how to set up my personal configuration, as well as, any constituent parts, where possible.
 
 ### NixOs Based Installation
 
 TODO: Update in the future with detailed instructions.
 
-## Changelogs
+## Change logs
 
 This section will be populated in the future, upon each version release.
 
@@ -47,7 +47,7 @@ This section will be populated in the future, upon each version release.
 - The GTK theme needs to be moved over to the owl4ce one by packaging it into a .nix file.
 - HTOP needs to be reconfigured.
 
-## Acknowledgements
+## Acknowledgments
 
 The following were either major inspirations or direct resources in producing my current configuration. This is not an exhaustive list.
 
