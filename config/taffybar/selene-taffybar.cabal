@@ -1,9 +1,9 @@
 name:           selene-taffybar
 version:        0.1.0.0
 synopsis:       Selene's TaffyBar configuration.
-homepage:       https://github.com/Icy-Thought/Snowflake/home/xmonad/icy-taffybar
-author:         Selene
-maintainer:     Selene
+homepage:       https://github.com/selene57/nixfiles/tree/master/config/taffybar
+author:         Selene Hines
+maintainer:     Selene Hines
 build-type:     Simple
 cabal-version:  >=1.10
 data-files:     taffybar.css
