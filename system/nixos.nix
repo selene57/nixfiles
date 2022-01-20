@@ -154,7 +154,7 @@
   		shadow = true;
   		fade = true;
   	};
-    dbus.packages = with pkgs; [ gnome3.dconf ];
+    dbus.packages = with pkgs; [ pkgs.dconf ];
   };
 
   # taffybar workaround/fix https://github.com/taffybar/taffybar/issues/403#issuecomment-843666681
