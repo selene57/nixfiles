@@ -1,6 +1,12 @@
 { config, pkgs, options, inputs, ... }:
 
 { 
+  
+  imports = [
+    ./gtk.nix
+    ./nvim.nix
+    ./qt.nix
+  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -48,41 +54,6 @@
     userName = "selene57";
     userEmail = "selene57.dev@gmail.com";
   };
-
-  programs.neovim = {
-    enable = true;
-    plugins = [ 
-      pkgs.vimPlugins.lightline-vim
-      pkgs.vimPlugins.vim-nix
-      pkgs.vimPlugins.auto-pairs
-      pkgs.vimPlugins.python-syntax
-      pkgs.vimPlugins.vim-misc
-      #pkgs.vimPlugins.vim-notes
-      pkgs.vimPlugins.papercolor-theme
-
-    ];
-    #settings = { };
-    extraConfig = ''
-      set mouse=a
-      set noshowmode
-      set pastetoggle=<F2>
-      set clipboard+=unnamedplus
-      set background=light
-      colorscheme PaperColor
-      filetype plugin on
-      let g:lightline = { 'colorscheme': 'PaperColor' }
-    '';
-  };
-
-  gtk = {
-    enable = true;
-    font.name = "Victor Mono SemiBold 12";
-    theme = {
-      name = "Paper";
-      package = pkgs.paper-gtk-theme;
-    };
-  };
-
 
   xdg.configFile.rofi = {
     source = ./config/rofi;

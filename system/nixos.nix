@@ -68,6 +68,7 @@
   home-manager
   htop
   libreoffice
+  lightlocker
   lollypop
   lxqt.pavucontrol-qt
   manuskript
@@ -138,6 +139,15 @@
         # 1st-Step Taffybar workaround
         systemctl --user import-environment GDK_PIXBUF_MODULE_FILE DBUS_SESSION_BUS_ADDRESS PATH
       '';
+      displayManager.lightdm = {
+        enable = true;
+        greeter = {
+          enable = true;
+          # package = ;
+          # name = ;
+        };
+        background = ../config/wallpapers/purple-heart-wallpaper.jpg;
+      };
   	};
   	picom = {
   		enable = true;
