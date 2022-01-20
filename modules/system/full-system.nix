@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
   imports = [
-    ./base.nix
+    ./base-system.nix
   ];
 }

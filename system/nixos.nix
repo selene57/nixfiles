@@ -6,7 +6,7 @@
 
 {
   imports = [
-    ../full.nix
+    ../modules/system/full-system.nix
     ./hardware-configuration.nix
   ];
 
