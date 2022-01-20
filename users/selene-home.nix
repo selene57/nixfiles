@@ -19,7 +19,7 @@
   ];
 
   nixpkgs.overlays = with inputs; [
-    (import ./config/taffybar/overlay.nix)
+    (import ../config/taffybar/overlay.nix)
   ] ++ taffybar.overlays;
 
   xsession = {
@@ -36,7 +36,7 @@
         hpkgs.xmonad
         hpkgs.taffybar
       ];
-      config = ./config/xmonad/xmonad.hs;
+      config = ../config/xmonad/xmonad.hs;
     };
 
   };
@@ -56,14 +56,14 @@
   };
 
   xdg.configFile.rofi = {
-    source = ./config/rofi;
+    source = ../config/rofi;
     recursive = true;
   };
 
   home.file = {
-      ".config/dunst/dunstrc".source = ./config/dunst/dunstrc;
-      ".config/alacritty/alacritty.yml".source = ./config/alacritty/alacritty.yml;
-      ".xmonad/startup.sh".source = ./config/xmonad/startup.sh;
+      ".config/dunst/dunstrc".source = ../config/dunst/dunstrc;
+      ".config/alacritty/alacritty.yml".source = ../config/alacritty/alacritty.yml;
+      ".xmonad/startup.sh".source = ../config/xmonad/startup.sh;
   };
 
 }

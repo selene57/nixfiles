@@ -6,7 +6,7 @@
     font.name = "Victor Mono SemiBold 12";
     theme = {
       name = "Sweetly";
-      package = pkgs.callPackage ./packages/sweetly-gtk-theme {};
+      package = pkgs.callPackage ../../../packages/sweetly-gtk-theme {};
     };
     iconTheme = {
       name = "Papirus";
