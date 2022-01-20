@@ -41,10 +41,9 @@ This section will be populated in the future, upon each version release.
 
 ## Known Issues
 
-- Nvim notes plugin needs to be separately packaged into a .nix file and installed.
 - The custom papirus icon theme needs to be installed.
 - The .nix system and user files needs to be better partitioned into individual responsibilities.
-- The GTK theme needs to be moved over to the owl4ce one by packaging it into a .nix file.
+- Zsh needs to be configured.
 - HTOP needs to be reconfigured.
 
 ## Acknowledgments
