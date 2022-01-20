@@ -6,7 +6,7 @@
 
 {
   imports = [
-    ../full.nix
+    ../modules/system/full-system.nix
     ./hardware-configuration.nix
   ];
 
@@ -68,6 +68,7 @@
   home-manager
   htop
   libreoffice
+  lightlocker
   lollypop
   lxqt.pavucontrol-qt
   manuskript
@@ -138,13 +139,22 @@
         # 1st-Step Taffybar workaround
         systemctl --user import-environment GDK_PIXBUF_MODULE_FILE DBUS_SESSION_BUS_ADDRESS PATH
       '';
+      displayManager.lightdm = {
+        enable = true;
+        greeter = {
+          enable = true;
+          # package = ;
+          # name = ;
+        };
+        background = ../config/wallpapers/purple-heart-wallpaper.jpg;
+      };
   	};
   	picom = {
   		enable = true;
   		shadow = true;
   		fade = true;
   	};
-    dbus.packages = with pkgs; [ gnome3.dconf ];
+    dbus.packages = with pkgs; [ pkgs.dconf ];
   };
 
   # taffybar workaround/fix https://github.com/taffybar/taffybar/issues/403#issuecomment-843666681

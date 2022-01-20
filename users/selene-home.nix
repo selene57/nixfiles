@@ -1,6 +1,12 @@
 { config, pkgs, options, inputs, ... }:
 
 { 
+  
+  imports = [
+    ../modules/user/applications/nvim.nix
+    ../modules/user/themes/gtk.nix
+    ../modules/user/themes/qt.nix
+  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -13,13 +19,26 @@
   ];
 
   nixpkgs.overlays = with inputs; [
-    (import ./config/taffybar/overlay.nix)
+    (import ../config/taffybar/overlay.nix)
   ] ++ taffybar.overlays;
 
   xsession = {
     enable = true;
     preferStatusNotifierItems = true;
     importedVariables = [ "GDK_PIXBUF_ICON_LOADER" ];
+
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+      extraPackages = hpkgs: [
+        hpkgs.xmonad-contrib
+        hpkgs.xmonad-extras
+        hpkgs.xmonad
+        hpkgs.taffybar
+      ];
+      config = ../config/xmonad/xmonad.hs;
+    };
+
   };
 
   services.taffybar = {
@@ -36,36 +55,15 @@
     userEmail = "selene57.dev@gmail.com";
   };
 
-  programs.neovim = {
-    enable = true;
-    plugins = [ 
-      pkgs.vimPlugins.lightline-vim
-      pkgs.vimPlugins.vim-nix
-      pkgs.vimPlugins.auto-pairs
-      pkgs.vimPlugins.python-syntax
-      pkgs.vimPlugins.vim-misc
-      #pkgs.vimPlugins.vim-notes
-      pkgs.vimPlugins.papercolor-theme
-
-    ];
-    #settings = { };
-    extraConfig = ''
-      set mouse=a
-      set noshowmode
-      set pastetoggle=<F2>
-      set clipboard+=unnamedplus
-      set background=light
-      colorscheme PaperColor
-      filetype plugin on
-      let g:lightline = { 'colorscheme': 'PaperColor' }
-    '';
+  xdg.configFile.rofi = {
+    source = ../config/rofi;
+    recursive = true;
   };
 
   home.file = {
-      ".xmonad/xmonad.hs".source = ./config/xmonad/xmonad.hs;
-      ".xmonad/startup.sh".source = ./config/xmonad/startup.sh;
-
-      ".config/dunst/dunstrc".source = ./config/dunst/dunstrc;
+      ".config/dunst/dunstrc".source = ../config/dunst/dunstrc;
+      ".config/alacritty/alacritty.yml".source = ../config/alacritty/alacritty.yml;
+      ".xmonad/startup.sh".source = ../config/xmonad/startup.sh;
   };
 
 }

@@ -6,5 +6,5 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users.selene = import ./home.nix;
+  home-manager.users.selene = import ../../users/selene-home.nix;
 }

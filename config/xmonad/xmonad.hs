@@ -213,7 +213,7 @@ myKeys conf = let
 
     subKeys "System"
     [ ("M-p", addName "Rofi drun" $ rofi)
-    , ("M-S-l", addName "Lock Screen" $ spawn "slimlock")
+    , ("M-S-l", addName "Lock Screen" $ spawn "light-locker-command -l")
     ] ^++^
 
     subKeys "Applications"

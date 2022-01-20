@@ -23,7 +23,7 @@
     };
 
     taffybar = {
-    	url = path:./config/taffybar/taffybar;
+    	url = "github:/taffybar/taffybar";
     	inputs.nixpkgs.follows = "nixpkgs";
     };
 
