@@ -177,16 +177,6 @@
       Nice = 10;
     };
   };
-
-  users.extraUsers.selene = {
-  	isNormalUser = true;
-  	uid = 1000;
-  	description = "Selene Hines";
-  	home = "/home/selene";
-  	createHome = true;
-  	extraGroups = [ "wheel"];
-  	useDefaultShell = true;
-  };
  
   nixpkgs.config = {
   	allowBroken = true;
@@ -194,8 +184,6 @@
   	oraclejdk.accept_license = true;
     pulseaudio = true;
   };
-  
-  security.sudo.enable = true;
   
   # Don't manually change this
   system.stateVersion = "20.09";
