@@ -7,8 +7,8 @@ stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "selene57";
     repo = "levuaska-gtk-theme";
-    rev = "a7d90739aa157f87d40163d555bb24716558158a";
-    sha256 = "7UNqXc5uzyzYHMt4lHPnMRkf+YnwuPMPiP1YnARkVU8=";
+    rev = "eaf668545d2450a7cc1b9f8a1fbfcd50df8fa5d8";
+    sha256 = "M43YyquFwwzxdhS9D+4nkaebHs1SDAz8cA+LcuU72LI=";
   };
 
   nativeBuildInputs = [ autoreconfHook ];
