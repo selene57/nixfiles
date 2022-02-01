@@ -23,6 +23,22 @@ in {
       pkgs.vimPlugins.plenary-nvim
 
       {
+        # telescope
+        plugin = pkgs.vimPlugins.telescope-nvim;
+        config = lua ''
+          
+        '';
+      }
+
+      {
+        # completion engine
+        plugin = pkgs.vimPlugins.nvim-cmp;
+        config = lua ''
+          
+        '';
+      }
+
+      {
         # file tree view
         plugin = pkgs.vimPlugins.nvim-tree-lua;
         config = lua ''
@@ -157,6 +173,7 @@ in {
                         custom_tag_completion = true,
                     },
                 },
+                ["core.norg.completion"] = { config = { engine = "nvim-cmp" } },
                 ["core.norg.concealer"] = {}, -- Allows for use of icons
                 ["core.norg.dirman"] = { -- Manage your directories with Neorg
                     config = {
@@ -169,6 +186,22 @@ in {
                 }
             },
           }
+
+          local neorg_callbacks = require("neorg.callbacks")
+
+          local neorg = require('neorg')
+          local function load_completion()
+              neorg.modules.load_module("core.norg.completion", nil, {
+                  engine = "nvim-cmp" -- Choose your completion engine here
+              })
+          end
+
+          -- If Neorg is loaded already then don't hesitate and load the completion
+          if neorg.is_loaded() then
+              load_completion()
+          else -- Otherwise wait until Neorg gets started and load the completion module then
+              neorg.callbacks.on_event("core.started", load_completion)
+          end
         '';
       }
 
