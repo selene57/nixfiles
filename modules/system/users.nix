@@ -31,7 +31,7 @@
     };
   };
 
-  nix.trustedUsers = [ "root" "selene" ];
+  nix.settings.trusted-Users = [ "root" "selene" ];
 
   imports = [
     inputs.home-manager.nixosModule
