@@ -26,6 +26,6 @@ stdenv.mkDerivation {
     homepage = "https://github.com/owl4ce/dotfiles";
     license = licenses.gpl3;
     platforms = platforms.linux;
-    maintainers = [ maintainers.simonvandel maintainers.romildo ];
+    maintainers = [ maintainers.selene57 ];
   };
 }
