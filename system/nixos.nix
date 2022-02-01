@@ -63,8 +63,10 @@
   dunst
   feh
   firefox
+  gcc
   gimp
   git
+  gnumake
   home-manager
   htop
   libreoffice
@@ -73,6 +75,7 @@
   lxqt.pavucontrol-qt
   manuskript
   nerdfonts
+  nodejs
   (pkgs.polybar.override { pulseSupport = true; })
   python3
   rofi
@@ -91,9 +94,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  programs.neovim.enable = true;
-  programs.neovim.viAlias = true;
 
   fonts.fonts = with pkgs; [
     pkgs.ubuntu_font_family
