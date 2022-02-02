@@ -1,14 +1,14 @@
 { lib, stdenv, fetchFromGitHub, autoreconfHook, gtk_engines }:
 
 stdenv.mkDerivation {
-  version = "2021-09-29";
-  pname = "sweetly-gtk-theme";
+  version = "2021-1-31";
+  pname = "levuaska-gtk-theme";
 
   src = fetchFromGitHub {
     owner = "selene57";
-    repo = "sweetly-gtk-theme";
-    rev = "a7d90739aa157f87d40163d555bb24716558158a";
-    sha256 = "7UNqXc5uzyzYHMt4lHPnMRkf+YnwuPMPiP1YnARkVU8=";
+    repo = "levuaska-gtk-theme";
+    rev = "eaf668545d2450a7cc1b9f8a1fbfcd50df8fa5d8";
+    sha256 = "M43YyquFwwzxdhS9D+4nkaebHs1SDAz8cA+LcuU72LI=";
   };
 
   nativeBuildInputs = [ autoreconfHook ];
@@ -22,8 +22,8 @@ stdenv.mkDerivation {
   preferLocalBuild = true;
 
   meta = with lib; {
-    description = "A flat material light gtk theme (C) 2020-2021 owl4ce.";
-    homepage = "https://github.com/owl4ce/dotfiles";
+    description = "A flat material dark gtk theme by saimoomedits inspired by owl4ce's fleon theme.";
+    homepage = "https://github.com/saimoomedits/levuaska";
     license = licenses.gpl3;
     platforms = platforms.linux;
     maintainers = [ maintainers.selene57 ];

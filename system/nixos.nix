@@ -63,8 +63,10 @@
   dunst
   feh
   firefox
+  gcc
   gimp
   git
+  gnumake
   home-manager
   htop
   libreoffice
@@ -73,6 +75,7 @@
   lxqt.pavucontrol-qt
   manuskript
   nerdfonts
+  nodejs
   (pkgs.polybar.override { pulseSupport = true; })
   python3
   rofi
@@ -91,9 +94,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  programs.neovim.enable = true;
-  programs.neovim.viAlias = true;
 
   fonts.fonts = with pkgs; [
     pkgs.ubuntu_font_family
@@ -177,16 +177,6 @@
       Nice = 10;
     };
   };
-
-  users.extraUsers.selene = {
-  	isNormalUser = true;
-  	uid = 1000;
-  	description = "Selene Hines";
-  	home = "/home/selene";
-  	createHome = true;
-  	extraGroups = [ "wheel"];
-  	useDefaultShell = true;
-  };
  
   nixpkgs.config = {
   	allowBroken = true;
@@ -194,8 +184,6 @@
   	oraclejdk.accept_license = true;
     pulseaudio = true;
   };
-  
-  security.sudo.enable = true;
   
   # Don't manually change this
   system.stateVersion = "20.09";

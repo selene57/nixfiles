@@ -4,7 +4,9 @@
   
   imports = [
     ../modules/user/applications/nvim.nix
-    ../modules/user/themes/gtk.nix
+    ../modules/user/shells/zsh.nix
+    ../modules/user/themes/sweetly-gtk.nix
+    #../modules/user/themes/levuaska-gtk.nix
     ../modules/user/themes/qt.nix
   ];
 
