@@ -51,7 +51,7 @@ While the system config itself, can't be used. Many of the modules and packages 
 
 This section will be populated upon each version release.
 
-[Version 1.1 - Release Notes](Release Notes/1-1.md)
+[Version 1.1 - Release Notes](release%20notes/1-1.md)
 
 Version 1.0 - Release Notes not provided as this was the base version for my system configuration.
 
