@@ -150,6 +150,8 @@ in {
               additional_vim_regex_highlighting = false,
             },
           }
+        '' + ''
+        autocmd VimEnter * TSUpdate
         '';
       }
 
@@ -246,7 +248,6 @@ in {
 
       " hybrid line numbers
       set nu rnu
-
 
     '';
   };
