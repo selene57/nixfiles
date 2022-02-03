@@ -182,7 +182,13 @@ in {
                         markup_preset = "dimmed",
                     },
                 },
-                ["core.norg.qol.toc"] = {}, -- generate automatic table of contents
+                ["core.norg.qol.toc"] = {}, -- Generate automatic table of contents
+                ["core.keybinds"] = { -- Allows configuring of keybinds
+                    config = {
+                        default_keybinds = true, -- generate default keybinds
+                        neorg_leader = "<LocalLeader>"
+                    },
+                },
                 ["core.norg.dirman"] = { -- Manage your directories with Neorg
                     config = {
                         workspaces = {
@@ -250,7 +256,8 @@ in {
       colorscheme PaperColor
       filetype plugin on
       let g:lightline = { 'colorscheme': 'PaperColor' }
-
+      let mapleader = " "
+      let maplocalleader = "\\"
 
       " hybrid line numbers
       set nu rnu
