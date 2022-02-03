@@ -182,6 +182,7 @@ in {
                         markup_preset = "dimmed",
                     },
                 },
+                ["core.norg.qol.toc"] = {}, -- generate automatic table of contents
                 ["core.norg.dirman"] = { -- Manage your directories with Neorg
                     config = {
                         workspaces = {
