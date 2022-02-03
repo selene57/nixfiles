@@ -176,7 +176,12 @@ in {
                     },
                 },
                 ["core.norg.completion"] = { config = { engine = "nvim-cmp" } },
-                ["core.norg.concealer"] = {}, -- Allows for use of icons
+                ["core.norg.concealer"] = { -- Allows for use of icons
+                    config = {
+                        icon_preset = "diamond",
+                        markup_preset = "dimmed",
+                    },
+                },
                 ["core.norg.dirman"] = { -- Manage your directories with Neorg
                     config = {
                         workspaces = {
