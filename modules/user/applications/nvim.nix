@@ -101,6 +101,8 @@ in {
               require_confirm = true
             }
           }
+        '' + ''
+        nnoremap <C-n> :NvimTreeToggle<CR>
         '';
       }
 
@@ -220,7 +222,7 @@ in {
       }
 
       {
-        # neorg requires plenary, and requires that treesitter is loaded before neorg
+        # nvim web devicons plugin
         plugin = pkgs.vimPlugins.nvim-web-devicons;
         config = lua ''
           require'nvim-web-devicons'.setup {
