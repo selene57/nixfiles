@@ -16,11 +16,104 @@ in {
     plugins = [
       # plugins are unordered, but any configs attached are put at top of init.vim in order
       # Functionality
-      pkgs.vimPlugins.lightline-vim
       pkgs.vimPlugins.vim-nix
       pkgs.vimPlugins.auto-pairs
       pkgs.vimPlugins.python-syntax
       pkgs.vimPlugins.plenary-nvim
+
+      {
+        # indent_blankline plugin -- adds indentation and EOL marks
+        plugin = pkgs.vimPlugins.indent-blankline-nvim;
+        config = lua ''
+          vim.opt.list = true
+          vim.opt.listchars:append("space:⋅")
+          vim.opt.listchars:append("eol:↴")
+
+          require("indent_blankline").setup {
+              space_char_blankline = " ",
+              show_current_context = true,
+              show_current_context_start = true,
+          }
+        '';
+      }
+
+      {
+        # lualine plugin -- custom and easy to configure statusline in Lua
+        plugin = pkgs.vimPlugins.lualine-nvim;
+        config = lua ''
+          require('lualine').setup {
+            options = {
+              icons_enabled = true,
+              theme = 'auto',
+              component_separators = { left = '', right = ''},
+              section_separators = { left = '', right = ''},
+              disabled_filetypes = {},
+              always_divide_middle = true,
+            },
+            sections = {
+              lualine_a = {'mode'},
+              lualine_b = {'branch', 'diff', 'diagnostics'},
+              lualine_c = {'filename'},
+              lualine_x = {'encoding', 'fileformat', 'filetype'},
+              lualine_y = {'progress'},
+              lualine_z = {'location'}
+            },
+            inactive_sections = {
+              lualine_a = {},
+              lualine_b = {},
+              lualine_c = {'filename'},
+              lualine_x = {'location'},
+              lualine_y = {},
+              lualine_z = {}
+            },
+            tabline = {
+              lualine_a = {},
+              lualine_b = {},
+              lualine_c = { require'tabline'.tabline_buffers },
+              lualine_x = { require'tabline'.tabline_tabs },
+              lualine_y = {},
+              lualine_z = {}
+            },
+            extensions = {}
+          }
+        '';
+      }
+
+      {
+        # tabline plugin -- custom and easy tab support that hooks into lualine
+        plugin = pkgs.vimPlugins.tabline-nvim;
+        config = lua ''
+          require'tabline'.setup {
+            -- Defaults configuration options
+            enable = true,
+            options = {
+            -- If lualine is installed tabline will use separators configured in lualine by default.
+            -- These options can be used to override those settings.
+              max_bufferline_percent = 66, -- set to nil by default, and it uses vim.o.columns * 2/3
+              show_tabs_always = false, -- this shows tabs only when there are more than one tab or if the first tab is named
+              show_devicons = true, -- this shows devicons in buffer section
+              show_bufnr = false, -- this appends [bufnr] to buffer section,
+              show_filename_only = false, -- shows base filename only instead of relative path in filename
+              modified_icon = "+ ", -- change the default modified icon
+              modified_italic = false, -- set to true by default; this determines whether the filename turns italic if modified
+            }
+          }
+          vim.cmd[[
+            set guioptions-=e " Use showtabline in gui vim
+            set sessionoptions+=tabpages,globals " store tabpages and globals in session
+          ]]
+        '';
+      }
+
+      {
+        # gitsigns plugin -- adds functionality to show what has changed in a file for git
+        plugin = pkgs.vimPlugins.gitsigns-nvim;
+        config = lua ''
+          require('gitsigns').setup {
+
+          }
+        '';
+      }
 
       {
         # telescope
@@ -244,9 +337,6 @@ in {
         '';
       }
 
-      # Theme
-      pkgs.vimPlugins.papercolor-theme
-
     ];
     #settings = { };
     extraConfig = ''
@@ -255,9 +345,7 @@ in {
       set pastetoggle=<F2>
       set clipboard+=unnamedplus
       set background=light
-      colorscheme PaperColor
       filetype plugin on
-      let g:lightline = { 'colorscheme': 'PaperColor' }
       let mapleader = " "
       let maplocalleader = "\\"
 
