@@ -22,17 +22,96 @@ in {
       pkgs.vimPlugins.plenary-nvim
 
       {
+        # catppucine theme
+        plugin = pkgs.vimPlugins.catppuccin-nvim;
+        config = lua ''
+          require("indent_blankline").setup {
+              transparent_background = false,
+              term_colors = false,
+              styles = {
+                comments = "italic",
+                functions = "italic",
+                keywords = "italic",
+                strings = "NONE",
+                variables = "italic",
+              },
+              integrations = {
+                treesitter = true,
+                native_lsp = {
+                  enabled = true,
+                  virtual_text = {
+                    errors = "italic",
+                    hints = "italic",
+                    warnings = "italic",
+                    information = "italic",
+                  },
+                  underlines = {
+                    errors = "underline",
+                    hints = "underline",
+                    warnings = "underline",
+                    information = "underline",
+                  },
+                },
+                lsp_trouble = false,
+                cmp = true,
+                lsp_saga = false,
+                gitgutter = false,
+                gitsigns = true,
+                telescope = true,
+                nvimtree = {
+                  enabled = true,
+                  show_root = false,
+                  transparent_panel = false,
+                },
+                which_key = false,
+                indent_blankline = {
+                  enabled = true,
+                  colored_indent_levels = true,
+                },
+                dashboard = false,
+                neogit = false,
+                vim_sneak = false,
+                fern = false,
+                barbar = false,
+                bufferline = true,
+                markdown = false,
+                lightspeed = false,
+                ts_rainbow = false,
+                hop = false,
+                notify = false,
+                telekasten = false,
+              }
+          }
+          vim.cmd[[colorscheme catppuccin]]
+        '';
+      }
+
+      {
         # indent_blankline plugin -- adds indentation and EOL marks
         plugin = pkgs.vimPlugins.indent-blankline-nvim;
         config = lua ''
+          vim.opt.termguicolors = true
+          vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
+          vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
+          vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
+          vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
+          vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
+          vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
+
           vim.opt.list = true
           vim.opt.listchars:append("space:⋅")
           vim.opt.listchars:append("eol:↴")
 
           require("indent_blankline").setup {
               space_char_blankline = " ",
-              show_current_context = true,
-              show_current_context_start = true,
+              char_highlight_list = {
+                  "IndentBlanklineIndent1",
+                  "IndentBlanklineIndent2",
+                  "IndentBlanklineIndent3",
+                  "IndentBlanklineIndent4",
+                  "IndentBlanklineIndent5",
+                  "IndentBlanklineIndent6",
+              },
           }
         '';
       }
@@ -44,7 +123,7 @@ in {
           require('lualine').setup {
             options = {
               icons_enabled = true,
-              theme = 'auto',
+              theme = 'catppuccin',
               component_separators = { left = '', right = ''},
               section_separators = { left = '', right = ''},
               disabled_filetypes = {},
@@ -66,42 +145,19 @@ in {
               lualine_y = {},
               lualine_z = {}
             },
-            tabline = {
-              lualine_a = {},
-              lualine_b = {},
-              lualine_c = { require'tabline'.tabline_buffers },
-              lualine_x = { require'tabline'.tabline_tabs },
-              lualine_y = {},
-              lualine_z = {}
-            },
+            tabline = {},
             extensions = {}
           }
         '';
       }
 
       {
-        # tabline plugin -- custom and easy tab support that hooks into lualine
-        plugin = pkgs.vimPlugins.tabline-nvim;
+        # bufferline plugin -- custom and easy buffer support
+        plugin = pkgs.vimPlugins.bufferline-nvim;
         config = lua ''
-          require'tabline'.setup {
+          require("bufferline").setup {
             -- Defaults configuration options
-            enable = true,
-            options = {
-            -- If lualine is installed tabline will use separators configured in lualine by default.
-            -- These options can be used to override those settings.
-              max_bufferline_percent = 66, -- set to nil by default, and it uses vim.o.columns * 2/3
-              show_tabs_always = false, -- this shows tabs only when there are more than one tab or if the first tab is named
-              show_devicons = true, -- this shows devicons in buffer section
-              show_bufnr = false, -- this appends [bufnr] to buffer section,
-              show_filename_only = false, -- shows base filename only instead of relative path in filename
-              modified_icon = "+ ", -- change the default modified icon
-              modified_italic = false, -- set to true by default; this determines whether the filename turns italic if modified
-            }
           }
-          vim.cmd[[
-            set guioptions-=e " Use showtabline in gui vim
-            set sessionoptions+=tabpages,globals " store tabpages and globals in session
-          ]]
         '';
       }
 
@@ -344,13 +400,15 @@ in {
       set noshowmode
       set pastetoggle=<F2>
       set clipboard+=unnamedplus
-      set background=light
       filetype plugin on
       let mapleader = " "
       let maplocalleader = "\\"
 
       " hybrid line numbers
       set nu rnu
+
+      " termguicolors
+      set termguicolors
 
     '';
   };
