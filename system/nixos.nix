@@ -74,7 +74,6 @@
   lollypop
   lxqt.pavucontrol-qt
   manuskript
-  nerdfonts
   nodejs
   (pkgs.polybar.override { pulseSupport = true; })
   python3
@@ -94,19 +93,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  fonts.fonts = with pkgs; [
-    pkgs.ubuntu_font_family
-  	noto-fonts
-  	noto-fonts-cjk
-  	noto-fonts-emoji
-  	liberation_ttf
-  	fira-code
-  	fira-code-symbols
-  	mplus-outline-fonts
-  	dina-font
-  	proggyfonts
-  ];
   
   # testing to try to fix scale/resolution
   environment.variables = {

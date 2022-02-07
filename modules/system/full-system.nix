@@ -2,5 +2,6 @@
 {
   imports = [
     ./base-system.nix
+    ./fonts.nix
   ];
 }
