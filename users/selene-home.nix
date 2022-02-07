@@ -3,10 +3,14 @@
 { 
   
   imports = [
+    #../modules/user/applications/alacritty-light-theme.nix
+    ../modules/user/applications/alacritty-dark-theme.nix
     ../modules/user/applications/nvim.nix
+    #../modules/user/applications/rofi-light-theme.nix
+    ../modules/user/applications/rofi-dark-theme.nix
     ../modules/user/shells/zsh.nix
-    ../modules/user/themes/sweetly-gtk.nix
-    #../modules/user/themes/levuaska-gtk.nix
+    #../modules/user/themes/sweetly-gtk.nix
+    ../modules/user/themes/levuaska-gtk.nix
     ../modules/user/themes/qt.nix
   ];
 
@@ -57,14 +61,8 @@
     userEmail = "selene57.dev@gmail.com";
   };
 
-  xdg.configFile.rofi = {
-    source = ../config/rofi;
-    recursive = true;
-  };
-
   home.file = {
       ".config/dunst/dunstrc".source = ../config/dunst/dunstrc;
-      ".config/alacritty/alacritty.yml".source = ../config/alacritty/alacritty.yml;
       ".xmonad/startup.sh".source = ../config/xmonad/startup.sh;
   };
 
