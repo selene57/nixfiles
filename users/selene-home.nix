@@ -11,6 +11,7 @@
     ../modules/user/shells/zsh.nix
     #../modules/user/themes/sweetly-gtk.nix
     ../modules/user/themes/levuaska-gtk.nix
+    #../modules/user/themes/catppuccin-gtk.nix
     ../modules/user/themes/qt.nix
   ];
 
