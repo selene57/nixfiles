@@ -5,7 +5,20 @@ let
     lua << EOF
     ${text}
     EOF
-  '';
+    '';
+  
+  nvim-config-relative-path = ../../../config/nvim;
+
+  neovim-session-manager = pkgs.vimUtils.buildVimPlugin {
+    pname = "neovim-session-manager";
+    version = "2022-02-03";
+    src = pkgs.fetchFromGitHub {
+      owner = "Shatur";
+      repo = "neovim-session-manager";
+      rev = "16bc2ff389fa4e6c51d5bdaee39fa308109bf3d7";
+      sha256 = "0KAAV8RIN832OZpOUsVhA41H4aVP+ZEm23xPjmKVkXU=";
+    };
+  };
 in {
   home.sessionVariables = { EDITOR = "nvim"; };
 
@@ -22,10 +35,30 @@ in {
       pkgs.vimPlugins.plenary-nvim
 
       {
+        # gitsigns plugin -- adds functionality to show what has changed in a file for git
+        plugin = neovim-session-manager;
+        config = lua ''
+          local Path = require('plenary.path')
+          require('session_manager').setup {
+           sessions_dir = Path:new(vim.fn.stdpath('data'), 'sessions'), -- The directory where the session files will be saved.
+           path_replacer = '__', -- The character to which the path separator will be replaced for session files.
+           colon_replacer = '++', -- The character to which the colon symbol will be replaced for session files.
+           autoload_mode = require('session_manager.config').AutoloadMode.CurrentDir, -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
+           autosave_last_session = true, -- Automatically save last session on exit and on session switch.
+           autosave_ignore_not_normal = true, -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
+           autosave_ignore_filetypes = { -- All buffers of these file types will be closed before the session is saved.
+             'gitcommit',
+           }, 
+           autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active. 
+          }
+        '';
+      }
+
+      {
         # catppucine theme
         plugin = pkgs.vimPlugins.catppuccin-nvim;
         config = lua ''
-          require("indent_blankline").setup {
+          require("catppuccin").setup {
               transparent_background = false,
               term_colors = false,
               styles = {
@@ -174,10 +207,9 @@ in {
       {
         # telescope
         plugin = pkgs.vimPlugins.telescope-nvim;
-        config = lua ''
-          
-        '';
+        config = builtins.readFile (nvim-config-relative-path + /telescope.vim);
       }
+      
 
       {
         # completion engine
