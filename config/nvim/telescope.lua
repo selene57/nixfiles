@@ -1,6 +1,3 @@
-lua << EOF
 require('telescope').setup{
-  -- ...
+        -- config goes here
 }
-EOF
-
