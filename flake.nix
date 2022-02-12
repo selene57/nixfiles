@@ -8,7 +8,7 @@
     };
 
     home-manager = {
-    	url = "github:nix-community/home-manager/master";
+    	url = "github:selene57/home-manager/auto-generate-neovim-init-lua";
     	inputs.nixpkgs.follows = "nixpkgs";
     };
 
