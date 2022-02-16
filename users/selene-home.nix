@@ -60,6 +60,10 @@
     enable = true;
     userName = "selene57";
     userEmail = "selene57.dev@gmail.com";
+    extraConfig = {
+      init.defaultBranch = "master";
+      credential.helper = "gopass";
+    };
   };
 
   home.file = {
