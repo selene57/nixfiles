@@ -46,15 +46,6 @@
           sha256 = "x+4C2u03RueNo6/ZXsueqmYoPIpDHnKAZXP5IiKsidE=";
         };
       }
-      {
-        name = "zsh-system-clipboard";
-        src = pkgs.fetchFromGitHub {
-          owner = "kutsan";
-         repo = "zsh-system-clipboard";
-          rev = "42c33875b17aa9d40005f44984512498167d03d3";
-          sha256 = "Bxffdgm8fGHnQLsqUiAC7YmApRmLSnAx+73g9mtsFEU=";
-        };
-      }
     ];
     initExtra = ''
       autoload -U promptinit; promptinit
