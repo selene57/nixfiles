@@ -8,6 +8,7 @@
     ../modules/user/applications/nvim.nix
     #../modules/user/applications/rofi-light-theme.nix
     ../modules/user/applications/rofi-dark-theme.nix
+    ../modules/user/develop/all-languages.nix
     ../modules/user/shells/zsh.nix
     #../modules/user/themes/sweetly-gtk.nix
     ../modules/user/themes/levuaska-gtk.nix

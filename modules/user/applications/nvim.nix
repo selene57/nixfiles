@@ -76,6 +76,12 @@ in {
         config = builtins.readFile (nvim-config-relative-path + /cmp.lua);
       }
       {
+        # language server config
+        plugin = pkgs.vimPlugins.nvim-lspconfig;
+        type = "lua";
+        config = builtins.readFile (nvim-config-relative-path + /lspconfig.lua);
+      }
+      {
         # file tree viewer
         plugin = pkgs.vimPlugins.nvim-tree-lua;
         config = builtins.readFile (nvim-config-relative-path + /tree-lua.vim);

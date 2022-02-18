@@ -76,7 +76,6 @@
   manuskript
   nodejs
   (pkgs.polybar.override { pulseSupport = true; })
-  python3
   rofi
   ruby
   spotify
@@ -174,4 +173,3 @@
   # Don't manually change this
   system.stateVersion = "20.09";
 }
-
