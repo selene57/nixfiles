@@ -5,6 +5,7 @@
   imports = [
     #../modules/user/applications/alacritty-light-theme.nix
     ../modules/user/applications/alacritty-dark-theme.nix
+    ../modules/user/applications/gpg.nix
     ../modules/user/applications/nvim.nix
     ../modules/user/applications/parcellite.nix
     #../modules/user/applications/rofi-light-theme.nix

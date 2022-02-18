@@ -4,6 +4,5 @@
     ./base-system.nix
     ./fonts.nix
     ./gopass.nix
-    ./gpg.nix
   ];
 }
