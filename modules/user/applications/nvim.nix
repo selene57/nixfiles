@@ -70,6 +70,10 @@ in {
         config = builtins.readFile (nvim-config-relative-path + /telescope.lua);
       }
       {
+        # telescope
+        plugin = pkgs.vimPlugins.telescope-fzf-native-nvim;
+      }
+      {
         # completion engine
         plugin = pkgs.vimPlugins.nvim-cmp;
         type = "lua";

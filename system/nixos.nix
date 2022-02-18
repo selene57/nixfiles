@@ -76,6 +76,7 @@
   manuskript
   nodejs
   (pkgs.polybar.override { pulseSupport = true; })
+  ripgrep
   rofi
   ruby
   spotify
