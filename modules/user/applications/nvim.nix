@@ -23,15 +23,18 @@ in {
     plugins = [
       # plugins are unordered, but any configs attached are put at top of init.vim in order
       # Functionality
-      pkgs.vimPlugins.vim-nix
-      pkgs.vimPlugins.auto-pairs
-      pkgs.vimPlugins.python-syntax
       pkgs.vimPlugins.plenary-nvim
       {
         # adds session management and context dependent autoloading
         plugin = neovim-session-manager;
         type = "lua";
         config = builtins.readFile (nvim-config-relative-path + /session-manager.lua); 
+      }
+      {
+        # adds support for autopairing
+        plugin = pkgs.vimPlugins.nvim-autopairs;
+        type = "lua";
+        config = builtins.readFile (nvim-config-relative-path + /autopairs.lua); 
       }
       {
         # catppuccine theme
