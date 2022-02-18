@@ -73,7 +73,7 @@ in {
         config = builtins.readFile (nvim-config-relative-path + /telescope.lua);
       }
       {
-        # telescope
+        # telescope fzf support
         plugin = pkgs.vimPlugins.telescope-fzf-native-nvim;
       }
       {
@@ -87,6 +87,16 @@ in {
         plugin = pkgs.vimPlugins.nvim-lspconfig;
         type = "lua";
         config = builtins.readFile (nvim-config-relative-path + /lspconfig.lua);
+      }
+      {
+        # support for snippets (required by cmp)
+        plugin = pkgs.vimPlugins.luasnip;
+        type = "lua";
+        config = builtins.readFile (nvim-config-relative-path + /luasnip.lua);
+      }
+      {
+        # support for cmp lsp based sources
+        plugin = pkgs.vimPlugins.cmp-nvim-lsp;
       }
       {
         # file tree viewer
