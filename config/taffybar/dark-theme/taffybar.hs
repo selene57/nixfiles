@@ -18,7 +18,7 @@ import           Data.Time
 import qualified GI.Gtk as Gtk
 import qualified GI.Gtk.Objects.Overlay as Gtk
 import           Network.HostName
-import           Paths_selene_taffybar                          (getDataDir)
+import           Paths_selene_taffybar_dark                          (getDataDir)
 import           StatusNotifier.Tray
 import           System.Directory
 import           System.Environment
@@ -63,7 +63,7 @@ makeCombinedWidget constructors = do
   Gtk.toWidget hbox
 
 cssFilesByHostname =
-  [ ("nixos", ["taffybar.css"]) ]
+  [ ("nixos", ["taffybar-dark.css"]) ]
 
 main = do
   hostName <- getHostName
@@ -97,7 +97,7 @@ main = do
       myStartWidgets = [ myLayoutWidget, myWorkspacesWidget]
       myCenterWidgets = [ myWindowsWidget ]
       myEndWidgets = [ myClockWidget, myTrayWidget ]
-      relativeFiles = fromMaybe ["taffybar.css"] $ lookup hostName cssFilesByHostname
+      relativeFiles = fromMaybe ["taffybar-dark.css"] $ lookup hostName cssFilesByHostname
       myCSSPaths = map (dataDir </>) relativeFiles
       --myCSSPath = Just "~/nixfiles/config/taffybar/taffybar.css"
       myStartupHook = return ()

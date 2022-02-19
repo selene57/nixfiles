@@ -1,0 +1,39 @@
+name:           selene-taffybar-dark
+version:        0.1.0.0
+synopsis:       Selene's TaffyBar Dark Configuration.
+homepage:       https://github.com/selene57/nixfiles/tree/master/config/taffybar
+author:         Selene Hines
+maintainer:     Selene Hines
+build-type:     Simple
+cabal-version:  >=1.10
+data-files:     taffybar-dark.css
+
+executable taffybar
+  main-is:             taffybar.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  -- ghc-options:      -threaded -g -rtsopts
+  ghc-prof-options: -fprof-auto
+  build-depends:       base
+                     , X11
+                     , bytestring
+                     , containers
+                     , data-default
+                     , directory
+                     , filepath
+                     , gi-glib
+                     , gi-gtk
+                     , gtk-sni-tray
+                     , gtk-strut
+                     , haskell-gi-base
+                     , hostname
+                     , hslogger
+                     , process
+                     , split
+                     , text
+                     , time
+                     , taffybar>=3.2.0
+                     , transformers
+                     , xdg-basedir
+  other-modules: Paths_selene_taffybar_dark
+  hs-source-dirs:      .
+  default-language:    Haskell2010

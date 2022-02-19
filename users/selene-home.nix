@@ -10,6 +10,8 @@
     ../modules/user/applications/parcellite.nix
     #../modules/user/applications/rofi-light-theme.nix
     ../modules/user/applications/rofi-dark-theme.nix
+    #../modules/user/applications/taffybar-light-theme.nix
+    ../modules/user/applications/taffybar-dark-theme.nix
     ../modules/user/develop/all-languages.nix
     ../modules/user/shells/zsh.nix
     #../modules/user/themes/sweetly-gtk.nix
@@ -28,10 +30,6 @@
   home.packages = with pkgs; [
   ];
 
-  nixpkgs.overlays = with inputs; [
-    (import ../config/taffybar/overlay.nix)
-  ] ++ taffybar.overlays;
-
   xsession = {
     enable = true;
     preferStatusNotifierItems = true;
@@ -49,11 +47,6 @@
       config = ../config/xmonad/xmonad.hs;
     };
 
-  };
-
-  services.taffybar = {
-    enable = true;
-    package = pkgs.haskellPackages.selene-taffybar;
   };
 
   # Status Notifier Applet Notification for SNITray in taffybar

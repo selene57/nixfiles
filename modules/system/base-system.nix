@@ -5,7 +5,8 @@
   ];
 
   nixpkgs.overlays = with inputs; [
-    (import ../../config/taffybar/overlay.nix)
+    (import ../../config/taffybar/light-theme/overlay.nix)
+    (import ../../config/taffybar/dark-theme/overlay.nix)
   ] ++ taffybar.overlays;
   
 }
