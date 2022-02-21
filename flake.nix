@@ -30,13 +30,19 @@
     notifications-tray-icon = {
     	url = github:IvanMalison/notifications-tray-icon/master;
     };
+
+    neovim-nightly-overlay = {
+	url = "github:nix-community/neovim-nightly-overlay";
+    };
+
   };
 
 
   outputs = inputs@{
 
     self, nixpkgs, home-manager, taffybar, xmonad,
-    xmonad-contrib, notifications-tray-icon
+    xmonad-contrib, notifications-tray-icon,
+    neovim-nightly-overlay
 
   }:
   let
