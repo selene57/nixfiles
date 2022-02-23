@@ -11,7 +11,7 @@
       emojione
       fira-code
       fira-mono
-      font-awesome-ttf
+      font-awesome
       iosevka
       noto-fonts-emoji
       roboto
