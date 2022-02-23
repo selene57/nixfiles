@@ -10,7 +10,7 @@
 configuration {
     lines:                          10;
     columns:                        1;
-    font:                           "Museo Sans 12";
+    font:                           "JetBrainsMono Nerd Font 12";
     bw:                             0;
     location:                       0;
     padding:                        0;
@@ -45,36 +45,36 @@ window {
     border:                         0px;
     border-color:                   @ac;
     border-radius:                  12px;
-    padding:                        30;
+    padding:                        15;
     width:                          35%;
 }
 
 prompt {
     spacing:                        0;
     border:                         0;
-    text-color:                     @fg;
+    text-color:                     @lavender;
 }
 
 textbox-prompt-colon {
     expand:                         false;
     str:                            " ";
     margin:                         0px 4px 0px 0px;
-    text-color:                     inherit;
+    text-color:                     @lavender;
 }
 
 entry {
     spacing:                        0;
-    text-color:                     @fg;
+    text-color:                     @lavender;
 }
 
 case-indicator {
     spacing:                        0;
-    text-color:                     @fg;
+    text-color:                     @lavender;
 }
 
 inputbar {
     spacing:                        0px;
-    text-color:                     @fg;
+    text-color:                     @lavender;
     padding:                        1px;
     children:                       [ prompt,textbox-prompt-colon,entry,case-indicator ];
 }
@@ -112,7 +112,7 @@ element normal.active {
     text-color:                     @bg;
 }
 element selected.normal {
-    background-color:               @fg;
+    background-color:               @lavender;
     text-color:                     @bg;
 }
 element selected.urgent {
@@ -120,7 +120,7 @@ element selected.urgent {
     text-color:                     @urgent;
 }
 element selected.active {
-    background-color:               @fg;
+    background-color:               @lavender;
     text-color:                     @bg;
 }
 element alternate.normal {
@@ -148,7 +148,7 @@ sidebar {
 }
 
 button {
-    background-color:               @blue;
+    background-color:               @sky;
     margin:                         5px;
     padding:                        5px;
     text-color:                     @bg;
@@ -158,8 +158,8 @@ button {
 }
 
 button selected {
-    background-color:               @purple;
-    text-color:                     @fg;
+    background-color:               @lavender;
+    text-color:                     @bg;
     border:                         0px;
     border-radius:                  4px;
     border-color:                   @fg;

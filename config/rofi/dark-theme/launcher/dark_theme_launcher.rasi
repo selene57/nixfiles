@@ -2,9 +2,9 @@
 
 * {
   al:      #00000000;
-  bg:      #FEFEFFFF;
+  bg:      #1E1E2EFF;
   se:      #ffd5cdff;
-  fg:      #373e4dff;
+  fg:      #D9E0EEFF;
   ac:      #ea907aff;
   urgent:  #EC7875ff;
   green:   #c9e0c4ff;
@@ -16,4 +16,6 @@
   pink:    #e0c4c9ff;
   lightpurple: #e0c4d7;
   darkpurple: #cdc4e0;
+  lavender: #C9CBFFFF;
+  sky: #89DCEBFF;
 }
