@@ -4,37 +4,24 @@
 @define-color black #000000;
 @define-color taffy-blue #0c7cd5;
 
-/* Colors from Owl4ce palette */
-@define-color paletteWhite1 #FFFFFF; /* lightest white */
-@define-color paletteWhite2 #F9F9F9; /* neutral white */
-@define-color paletteWhite3 #F7F7F7; /* washed out white */
-@define-color paletteWhite4 #F4F4F4; /* grayest white */
-
-@define-color paletteVeryDarkBlue1 #373E4E; /* very dark blue */
-@define-color paletteVeryDarkBlue2 #3B4252; /* low sat / high brightness - very dark blue */
-@define-color paletteNavyBlue1 #434B5E; /* navy blue */
-@define-color paletteNavyBlue2 #4B566A; /* low sat / high brightness - navy blue */
-@define-color palettePink1 #FA5AA4; /* pink */
-@define-color palettePink2 #FA74B1; /* low sat / high brightness - pink */
-@define-color paletteGreen1 #29E491; /* green */
-@define-color paletteGreen2 #44EA9E; /* low sat / high brightness - green */
-@define-color paletteOrange1 #FA946E; /* orange */
-@define-color paletteOrange2 #FBA687; /* low sat / high brightness - orange */
-@define-color paletteBlue1 #7AcbE9; /* blue */
-@define-color paletteBlue2 #63C5EA; /* low sat / high brightness - blue */
-@define-color palettePurple1 #CF8EF4; /* purple */
-@define-color palettePurple2 #D9A6F5; /* low sat / high brightness - purple */
-@define-color paletteLightBlue1 #89CCF7; /* light blue */
-@define-color paletteLightBlue2 #A0D5F7; /* low sat / high brightness - light blue */
+/* Colors from catppuccin palette */
+@define-color paletteWhite #D9E0EE;
+@define-color paletteBlack2 #1E1E2E;
+@define-color paletteBlack4 #575268;
+@define-color palettePink #F5C2E7;
+@define-color paletteGreen #ABE9B3;
+@define-color paletteSky #89DCEB;
+@define-color paletteLavender #C9C8FF;
+@define-color paletteGray0 #6E6C7E;
 
 /* object defined colors */
 @define-color active-window-color @white;
 @define-color urgent-window-color @taffy-blue;
-@define-color font-color @black;
+@define-color font-color @paletteWhite;
 @define-color menu-background-color @white;
 @define-color menu-font-color @black;
 
-@define-color barBackground @paletteWhite2;
+@define-color barBackground @paletteBlack2;
 
 /* Top level styling */
 
@@ -45,8 +32,8 @@
 	*/
 	all: unset;
 
-	font-family: "Noto Sans", sans-serif;
-	font-size: 10pt;
+	font-family: "JetBrainsMono Nerd Font";
+	font-size: 12pt;
 	font-weight: normal;
 	color: @font-color;
 }
@@ -70,24 +57,32 @@
 	padding-right: 2px;
 	padding-left: 2px;
 	transition: background-color .5s;
-	border-radius: 5px;
+	border-radius: 0px;
 }
 
 /* Workspaces styling */
 
 .workspace-label {
-	padding-right: 3px;
-	padding-left: 2px;
-	font-size: 10pt;
-	color: @palettePink2;
+	padding-right: 4px;
+	padding-left: 4px;
+	font-size: 12pt;
+	color: @paletteGray0;
 }
 
-.active .contents {
-	background-color: rgba(0.0, 0.0, 0.0, 0.5);
+.active .workspace-label{
+	color: @palettePink;
+}
+
+.visible .workspace-label{
+	color: @paletteWhite;
+}
+
+.active .contents {;
+	background-color: @paletteBlack4;
 }
 
 .visible .contents {
-	background-color: rgba(0.0, 0.0, 0.0, 0.2);
+	background-color: @paletteBlack4;
 }
 
 .window-icon-container {
@@ -101,10 +96,12 @@
 .auto-size-image, .sni-tray {
 	padding-top: 3px;
 	padding-bottom: 3px;
+	padding-left: 1px;
+	padding-right: 1px;
 }
 
 .window-icon-container.active {
-	box-shadow: inset 0 -3px @white;
+	box-shadow: inset 0 -3px @palettePink;
 }
 
 .window-icon-container.urgent {
@@ -158,10 +155,15 @@ button:checked, button:hover .Contents:hover {
 
 /* Layout Styling */
 .layout * {
-	color: @paletteGreen2;
+	color: @paletteGreen;
 }
 
 /* Clock Styling */
 .clock * {
-	color: @paletteBlue2;
+	color: @paletteSky;
+}
+
+/* Windows Label Styling */
+.windows * {
+	color: @paletteLavender;
 }

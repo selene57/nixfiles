@@ -62,6 +62,22 @@ makeCombinedWidget constructors = do
 
   Gtk.toWidget hbox
 
+workspaceIconByName :: String -> String
+workspaceIconByName "" = "Empty"
+workspaceIconByName "1-Home" = "1"
+workspaceIconByName "2-Web" = "2"
+workspaceIconByName "3-Work" = "3"
+workspaceIconByName "4-Term" = "4"
+workspaceIconByName "5-Code" = "5"
+workspaceIconByName "6-Doc" = "6"
+workspaceIconByName "7-Write" = "7"
+workspaceIconByName "8-Game" = "8"
+workspaceIconByName "9-Media" = "9"
+workspaceIconByName all@(x:xs) = all
+
+myWorkplaceLabelSetter :: Workspace -> WorkspacesIO String
+myWorkplaceLabelSetter = return . workspaceIconByName . workspaceName
+
 cssFilesByHostname =
   [ ("nixos", ["taffybar-dark.css"]) ]
 
@@ -73,10 +89,14 @@ main = do
   let myLayoutWidget = 
         decorateWithSetClassAndBoxes "layout" $
          layoutNew defaultLayoutConfig
+	 	  { formatLayout = return . (Data.Text.justifyLeft 6 ' ') . (Data.Text.take 6) . (Data.Text.strip)
+	 	  }
 
       myWorkspacesWidget = 
         flip widgetSetClassGI "workspaces" =<<
         workspacesNew defaultWorkspacesConfig
+		  { labelSetter = myWorkplaceLabelSetter
+		  }
 
       myWindowsWidget = decorateWithSetClassAndBoxes "windows" $ windowsNew defaultWindowsConfig
 
