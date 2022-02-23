@@ -17,6 +17,7 @@ import XMonad.Layout
 import XMonad.Layout.BinarySpacePartition
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
+import XMonad.Layout.Renamed
 import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
 import XMonad.Layout.WindowArranger
@@ -162,7 +163,7 @@ myWorkspaces = [workspaceHome, workspaceWeb, workspaceWork, workspaceTerm
 ---------------------------------------------------------------------------
 myLayoutHook = myUniversalLayoutMod $ myLayouts
 
-myUniversalLayoutMod = avoidStruts . mySpacing
+myUniversalLayoutMod = avoidStruts
 
 myLayouts = fullFirstMod
             $ bspFirstMod
@@ -179,16 +180,15 @@ bspDefaultWorkspaces = ["4-Term", "5-Code"]
 tallDefaultWorkspaces = ["2-Web", "3-Work"]
 
 -- layouts
-myFull = noBorders $ Full
+myFull = renamed [Replace "Full"] $ mySpacing $ noBorders $ Full
 
-myBSP = mouseResize $ windowArrange $ emptyBSP
+myBSP = renamed [Replace "BSP"] $ mySpacing $ mouseResize $ windowArrange $ emptyBSP
 
-myTall =
-    Tall
-    { tallNMaster = 1
-    , tallRatioIncrement = 1/100
-    , tallRatio = 1/2
-    }
+myTall = renamed [Replace "Tall"] $ mySpacing $ Tall
+                                                { tallNMaster = 1
+                                                , tallRatioIncrement = 1/100
+                                                , tallRatio = 1/2
+                                                }
 
 ---------------------------------------------------------------------------
 -- Key Bindings
