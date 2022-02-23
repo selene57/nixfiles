@@ -51,7 +51,7 @@ myConfig = def
     { borderWidth = myBorderWidth
     , clickJustFocuses = myClickJustFocuses
     , focusFollowsMouse = myFocusFollowsMouse
-    --, normalBorderColor = myNormalBorderColor
+    , normalBorderColor = myNormalBorderColor
     , focusedBorderColor = myFocusedBorderColor
     , manageHook = myManageHook
     , handleEventHook = myHandleEventHook
@@ -126,7 +126,9 @@ myStartupHook = ewmhDesktopsStartup <+> do
 ---------------------------------------------------------------------------
 
 -- color definitions
-myFocusedBorderColor = "#CF8EF4"
+myFocusedBorderColor = "#C9CBFF"
+--myFocusedBorderColor = "#CF8EF4" old color
+myNormalBorderColor = "#575268"
 
 -- sizing
 gap = 10
